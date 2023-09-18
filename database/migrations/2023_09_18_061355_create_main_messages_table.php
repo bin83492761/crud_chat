@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reply_messages', function (Blueprint $table) {
+        Schema::create('main_messages', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->text('reply_message')->nullable(false)->comment('回文內容');
-            $table->tinyInteger('main_id')->nullable(false)->comment('原文是第幾樓');
-            $table->tinyInteger('reply_id')->nullable(false)->comment('第幾則回覆');
+            $table->text('main_message')->nullable()->default('')->comment('主文內容');
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reply_messages');
+        Schema::dropIfExists('main_messages');
     }
 };

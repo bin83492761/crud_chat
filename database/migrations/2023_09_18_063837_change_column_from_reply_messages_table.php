@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('main_messages', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->text('main_message')->nullable(false)->comment('發文內容');
-            $table->tinyInteger('message_id')->nullable(false)->comment('第幾樓');
+        Schema::table('reply_messages', function (Blueprint $table) {
+            $table->text('reply_message')->nullable()->comment('回文內容')->change();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('main_messages');
+        Schema::table('reply_messages', function (Blueprint $table) {
+            //
+        });
     }
 };
